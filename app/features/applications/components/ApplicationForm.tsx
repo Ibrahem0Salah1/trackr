@@ -6,6 +6,7 @@ import type { CreateApplicationInput } from "@/app/features/applications/types"
 
 interface Props {
     onSuccess: () => void
+    onCancel?: () => void
 }
 
 // All fields are strings or booleans here — HTML inputs only produce strings.
@@ -22,7 +23,7 @@ const defaultFormData = {
     linkOfApplication: "",
 }
 
-export default function ApplicationForm({ onSuccess }: Props) {
+export default function ApplicationForm({ onSuccess, onCancel }: Props) {
     const [formData, setFormData] = useState(defaultFormData)
     const { mutate, isPending, isError } = useCreateApplication()
 
@@ -65,172 +66,184 @@ export default function ApplicationForm({ onSuccess }: Props) {
     }
 
     return (
-        <form onSubmit={handleSubmit} className="space-y-1.5">
+        <form onSubmit={handleSubmit} className="flex flex-col gap-5">
 
-            {/* Company */}
-            <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                    Company
-                </label>
-                <div className="relative">
-                    <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9c9a94] text-xs font-mono">
-                        @
-                    </span>
-                    <input
-                        name="company"
-                        placeholder="e.g. Stripe, Figma…"
-                        value={formData.company}
-                        onChange={handleChange}
-                        required
-                        className="w-full bg-white border border-[#e0ded7] rounded-lg pl-8 pr-3.5 py-2.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all"
-                    />
-                </div>
-            </div>
-
-            {/* Position */}
-            <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                    Position
-                </label>
-                <input
-                    name="position"
-                    placeholder="e.g. Senior Frontend Engineer"
-                    value={formData.position}
-                    onChange={handleChange}
-                    required
-                    className="w-full bg-white border border-[#e0ded7] rounded-lg px-3.5 py-2.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all"
-                />
-            </div>
-
-            {/* Salary + Currency */}
-            <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                        Salary
+            <div className="space-y-4">
+                {/* Company */}
+                <div className="space-y-2">
+                    <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                        Company
                     </label>
                     <div className="relative">
-                        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-[#9c9a94] text-xs font-mono">
-                            $
+                        <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-mono text-[#9c9a94]">
+                            @
                         </span>
                         <input
-                            name="salary"
-                            type="number"
-                            placeholder="120,000"
-                            value={formData.salary}
+                            name="company"
+                            placeholder="e.g. Stripe, Figma…"
+                            value={formData.company}
                             onChange={handleChange}
-                            className="w-full bg-white border border-[#e0ded7] rounded-lg pl-8 pr-3.5 py-2.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all"
+                            required
+                            className="w-full rounded-lg border border-[#e0ded7] bg-white py-3 pl-8 pr-3.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
                         />
                     </div>
                 </div>
-                <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                        Currency
+
+                {/* Position */}
+                <div className="space-y-2">
+                    <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                        Position
+                    </label>
+                    <input
+                        name="position"
+                        placeholder="e.g. Senior Frontend Engineer"
+                        value={formData.position}
+                        onChange={handleChange}
+                        required
+                        className="w-full rounded-lg border border-[#e0ded7] bg-white px-3.5 py-3 text-sm text-[#1a1917] placeholder:text-[#9c9a94] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
+                    />
+                </div>
+
+                {/* Salary + Currency */}
+                <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                        <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                            Salary
+                        </label>
+                        <div className="relative">
+                            <span className="absolute left-3.5 top-1/2 -translate-y-1/2 text-xs font-mono text-[#9c9a94]">
+                                $
+                            </span>
+                            <input
+                                name="salary"
+                                type="number"
+                                placeholder="120000"
+                                value={formData.salary}
+                                onChange={handleChange}
+                                className="w-full rounded-lg border border-[#e0ded7] bg-white py-3 pl-8 pr-3.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
+                            />
+                        </div>
+                    </div>
+                    <div className="space-y-2">
+                        <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                            Currency
+                        </label>
+                        <select
+                            name="salaryCurrency"
+                            value={formData.salaryCurrency}
+                            onChange={handleChange}
+                            className="w-full appearance-none rounded-lg border border-[#e0ded7] bg-white px-3.5 py-3 text-sm text-[#1a1917] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
+                        >
+                            <option value="USD">USD</option>
+                            <option value="EUR">EUR</option>
+                            <option value="EGP">EGP</option>
+                        </select>
+                    </div>
+                </div>
+
+                {/* Country + City */}
+                <div className="grid gap-4 sm:grid-cols-2">
+                    <div className="space-y-2">
+                        <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                            Country
+                        </label>
+                        <input
+                            name="country"
+                            placeholder="Egypt"
+                            value={formData.country}
+                            onChange={handleChange}
+                            className="w-full rounded-lg border border-[#e0ded7] bg-white px-3.5 py-3 text-sm text-[#1a1917] placeholder:text-[#9c9a94] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
+                        />
+                    </div>
+                    <div className="space-y-2">
+                        <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                            City
+                        </label>
+                        <input
+                            name="city"
+                            placeholder="Cairo"
+                            value={formData.city}
+                            onChange={handleChange}
+                            className="w-full rounded-lg border border-[#e0ded7] bg-white px-3.5 py-3 text-sm text-[#1a1917] placeholder:text-[#9c9a94] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
+                        />
+                    </div>
+                </div>
+
+                {/* Status */}
+                <div className="space-y-2">
+                    <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                        Status
                     </label>
                     <select
-                        name="salaryCurrency"
-                        value={formData.salaryCurrency}
+                        name="status"
+                        value={formData.status}
                         onChange={handleChange}
-                        className="w-full bg-white border border-[#e0ded7] rounded-lg px-3.5 py-2.5 text-sm text-[#1a1917] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all appearance-none"
+                        className="w-full appearance-none rounded-lg border border-[#e0ded7] bg-white px-3.5 py-3 text-sm text-[#1a1917] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
                     >
-                        <option value="USD">USD</option>
-                        <option value="EUR">EUR</option>
-                        <option value="EGP">EGP</option>
+                        <option value="APPLIED">Applied</option>
+                        <option value="INTERVIEW">Interview</option>
+                        <option value="OFFER">Offer</option>
+                        <option value="REJECTED">Rejected</option>
                     </select>
                 </div>
-            </div>
 
-            {/* Country + City */}
-            <div className="grid grid-cols-2 gap-3">
-                <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                        Country
+                {/* Application link */}
+                <div className="space-y-2">
+                    <label className="font-mono text-xs font-medium uppercase tracking-wider text-[#5c5a55]">
+                        Application link
                     </label>
                     <input
-                        name="country"
-                        placeholder="Egypt"
-                        value={formData.country}
+                        name="linkOfApplication"
+                        placeholder="https://jobs.company.com/…"
+                        value={formData.linkOfApplication}
                         onChange={handleChange}
-                        className="w-full bg-white border border-[#e0ded7] rounded-lg px-3.5 py-2.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all"
+                        className="w-full rounded-lg border border-[#e0ded7] bg-white px-3.5 py-3 text-sm text-[#1a1917] placeholder:text-[#9c9a94] transition-all focus:border-violet-500 focus:outline-none focus:ring-2 focus:ring-violet-500/10"
                     />
                 </div>
-                <div className="space-y-1.5">
-                    <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                        City
-                    </label>
-                    <input
-                        name="city"
-                        placeholder="Cairo"
-                        value={formData.city}
-                        onChange={handleChange}
-                        className="w-full bg-white border border-[#e0ded7] rounded-lg px-3.5 py-2.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all"
-                    />
-                </div>
-            </div>
 
-            {/* Status */}
-            <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                    Status
+                {/* Remote toggle */}
+                <label className="flex cursor-pointer items-center gap-3 rounded-lg border border-[#e0ded7] bg-[#f3f2ee] px-3.5 py-3">
+                    <div className="relative">
+                        <input
+                            name="remote"
+                            type="checkbox"
+                            checked={formData.remote}
+                            onChange={handleChange}
+                            className="peer sr-only"
+                        />
+                        <div className="h-5 w-9 rounded-full bg-[#ccc9bf] transition-colors peer-checked:bg-violet-500" />
+                        <div className="pointer-events-none absolute left-0.5 top-0.5 h-4 w-4 rounded-full bg-white transition-transform peer-checked:translate-x-4" />
+                    </div>
+                    <span className="text-sm text-[#1a1917]">Remote position</span>
                 </label>
-                <select
-                    name="status"
-                    value={formData.status}
-                    onChange={handleChange}
-                    className="w-full bg-white border border-[#e0ded7] rounded-lg px-3.5 py-2.5 text-sm text-[#1a1917] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all appearance-none"
-                >
-                    <option value="APPLIED">Applied</option>
-                    <option value="INTERVIEW">Interview</option>
-                    <option value="OFFER">Offer</option>
-                    <option value="REJECTED">Rejected</option>
-                </select>
+
+                {/* Error */}
+                {isError && (
+                    <p className="rounded-lg border border-red-200 bg-red-50 px-3.5 py-2.5 text-xs text-red-600">
+                        Failed to create application. Please try again.
+                    </p>
+                )}
             </div>
 
-            {/* Application link */}
-            <div className="space-y-1.5">
-                <label className="text-xs font-medium text-[#5c5a55] uppercase tracking-wider font-mono">
-                    Application link
-                </label>
-                <input
-                    name="linkOfApplication"
-                    placeholder="https://jobs.company.com/…"
-                    value={formData.linkOfApplication}
-                    onChange={handleChange}
-                    className="w-full bg-white border border-[#e0ded7] rounded-lg px-3.5 py-2.5 text-sm text-[#1a1917] placeholder:text-[#9c9a94] focus:outline-none focus:border-violet-500 focus:ring-2 focus:ring-violet-500/10 transition-all"
-                />
-            </div>
-
-            {/* Remote toggle */}
-            <label className="flex items-center gap-3 px-3.5 py-3 bg-[#f3f2ee] border border-[#e0ded7] rounded-lg cursor-pointer">
-                <div className="relative">
-                    <input
-                        name="remote"
-                        type="checkbox"
-                        checked={formData.remote}
-                        onChange={handleChange}
-                        className="sr-only peer"
-                    />
-                    <div className="w-9 h-5 bg-[#ccc9bf] peer-checked:bg-violet-500 rounded-full transition-colors" />
-                    <div className="absolute top-0.5 left-0.5 w-4 h-4 bg-white rounded-full transition-transform peer-checked:translate-x-4 pointer-events-none" />
-                </div>
-                <span className="text-sm text-[#1a1917]">Remote position</span>
-            </label>
-
-            {/* Error */}
-            {isError && (
-                <p className="text-xs text-red-600 bg-red-50 border border-red-200 rounded-lg px-3.5 py-2.5">
-                    Failed to create application. Please try again.
-                </p>
-            )}
-
-            {/* Submit */}
             <div className="pt-2">
-                <button
-                    type="submit"
-                    disabled={isPending}
-                    className="w-full bg-[#1a1917] hover:bg-[#2d2c29] disabled:opacity-40 disabled:cursor-not-allowed text-white text-sm font-medium px-4 py-2.5 rounded-lg transition-colors"
-                >
-                    {isPending ? "Saving…" : "Save application"}
-                </button>
+                <div className="flex flex-col-reverse gap-3 sm:flex-row sm:justify-end">
+                    {onCancel && (
+                        <button
+                            type="button"
+                            onClick={onCancel}
+                            className="min-h-11 rounded-lg border border-[#e0ded7] px-4 py-2.5 text-sm font-medium text-[#5c5a55] transition-colors hover:bg-[#f3f2ee]"
+                        >
+                            Cancel
+                        </button>
+                    )}
+                    <button
+                        type="submit"
+                        disabled={isPending}
+                        className="min-h-11 w-full rounded-lg bg-[#1a1917] px-4 py-2.5 text-sm font-medium text-white transition-colors hover:bg-[#2d2c29] disabled:cursor-not-allowed disabled:opacity-40 sm:w-auto sm:min-w-[11rem]"
+                    >
+                        {isPending ? "Saving…" : "Save application"}
+                    </button>
+                </div>
             </div>
 
         </form>

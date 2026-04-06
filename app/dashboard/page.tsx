@@ -67,9 +67,9 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
     return (
         <>
             <Navbar userData={userData} />
-            <div className="min-h-screen bg-[#fafaf8] text-[#1a1917]">
+            <div className="min-h-screen  bg-[#fafaf8] text-[#1a1917]">
 
-                <div className="mx-auto max-w-7xl px-6 py-10 md:px-12">
+                <div className="mx-auto max-w-7xl px-2 py-10 md:px-12">
                     <div className="mb-4 flex flex-col gap-3 sm:flex-row sm:items-center sm:justify-between">
                         <div className="w-full sm:max-w-sm">
                             <SearchBar />
@@ -78,7 +78,7 @@ export default async function Dashboard({ searchParams }: DashboardProps) {
                             <AppModal />
                         </div>
                     </div>
-                    <div className="rounded-[32px] border border-[#e0ded7] bg-white shadow-2xl shadow-black/5">
+                    <div className="rounded-4xl border  border-[#e0ded7] shadow-2xl shadow-black/5">
                         <HydrationBoundary state={dehydrate(queryClient)}>
                             <ApplicationsTable />
                         </HydrationBoundary>

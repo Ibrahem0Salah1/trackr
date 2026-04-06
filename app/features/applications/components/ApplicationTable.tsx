@@ -64,14 +64,14 @@ function TableInner() {
                     ) : (
                         <>
                             {/* ── MOBILE / TABLET: card grid ── */}
-                            <div className="grid gap-3 p-4 xl:hidden">
+                            <div className="grid gap-3 py-4 px-2 lg:hidden">
                                 {apps.map(app => (
                                     <ApplicationRow key={app.id} app={app} variant="card" />
                                 ))}
                             </div>
 
                             {/* ── DESKTOP: table ── */}
-                            <div className="hidden xl:block xl:overflow-x-auto">
+                            <div className="hidden lg:block lg:overflow-x-auto">
                                 <table className="w-full min-w-[980px]">
                                     <thead>
                                         <tr className="border-b border-[#e0ded7]">

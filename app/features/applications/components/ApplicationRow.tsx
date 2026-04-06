@@ -74,7 +74,7 @@ export default function ApplicationRow({
                         <div className="text-xs font-mono uppercase tracking-[0.18em] text-[#9c9a94]">
                             Company
                         </div>
-                        <div className="mt-1 text-base font-semibold text-[#1a1917]">
+                        <div className="mt-1 text-base w-full font-semibold text-[#1a1917]">
                             <EditableCell value={app.company} field="company" onSave={saveField} />
                         </div>
                     </div>
