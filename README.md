@@ -1,3 +1,19 @@
+Full-stack workflow management system built with Next.js, Prisma, and PostgreSQL.
+
+## Features
+- Authentication (JWT + bcrypt)
+- RESTful API
+- SSR with React Query
+- Rate limiting on auth
+- URL state management
+
+## Tech Stack
+- Next.js
+- Prisma
+- PostgreSQL (Neon)
+- React Query
+- Tailwind CSS
+
 This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
 
 ## Getting Started
