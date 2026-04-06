@@ -80,7 +80,7 @@ export default function FloatingActionBar() {
                     </button>
 
                     {open && (
-                        <div className="absolute bottom-full left-0 mb-2 w-56 overflow-hidden rounded-xl border border-[#e0ded7] bg-white shadow-xl shadow-black/10">
+                        <div className="absolute bottom-full -left-12 mb-2 w-56 overflow-hidden rounded-xl border border-[#e0ded7] bg-white shadow-xl shadow-black/10">
 
                             {/* Dropdown header */}
                             <div className="border-b border-[#f3f2ee] px-3 py-2">
