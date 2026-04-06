@@ -8,9 +8,7 @@ export const createApplicationSchema = z.object({
   country: z.string().optional(),
   city: z.string().optional(),
   remote: z.boolean().default(false),
-  status: z
-    .enum(["APPLIED", "INTERVIEW", "OFFER", "REJECTED"])
-    .default("APPLIED"),
+  status: z.enum(["APPLIED", "INTERVIEW", "OFFER", "REJECTED"]),
   linkOfApplication: z.string().url().optional().or(z.literal("")),
 });
 
