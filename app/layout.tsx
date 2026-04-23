@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import { DM_Mono, DM_Sans, Instrument_Serif } from "next/font/google";
 import "./globals.css";
+import { Analytics } from "@vercel/analytics/next"
 import Providers from "./providers";
 import { NuqsAdapter } from "nuqs/adapters/next/app";
 const dmSans = DM_Sans({
@@ -39,6 +40,7 @@ export default function RootLayout({
         <Providers>
           <NuqsAdapter>
             {children}
+            <Analytics />
           </NuqsAdapter>
         </Providers>
       </body>
