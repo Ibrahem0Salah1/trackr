@@ -44,17 +44,17 @@ export default function AppModal() {
 
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-50 rounded bg-[#1a1917]/40 backdrop-blur-sm"
+                    className="fixed inset-0 z-50 overflow-y-auto bg-[#1a1917]/40 backdrop-blur-sm"
                     onClick={closeModal}
                 >
-                    <div className="flex items-end justify-center sm:items-center sm:px-4 sm:py-6">
+                    <div className="flex min-h-full items-end justify-center p-3 sm:items-center sm:px-4 sm:py-6">
                         <div
                             role="dialog"
                             aria-modal="true"
                             aria-labelledby={titleId}
                             aria-describedby={descriptionId}
                             onClick={event => event.stopPropagation()}
-                            className="flex w-full max-w-2xl flex-col overflow-hidden border rounded-xl border-[#e0ded7] bg-white shadow-2xl shadow-black/10 sm:h-auto sm:max-h-[calc(100dvh-3rem)]"
+                            className="flex w-full max-w-2xl max-h-[calc(100dvh-1.5rem)] flex-col overflow-hidden rounded-xl border border-[#e0ded7] bg-white shadow-2xl shadow-black/10 sm:max-h-[calc(100dvh-3rem)]"
                         >
                             <div className="shrink-0 border-b border-[#ece9e1] bg-white px-4 pb-4 pt-4 sm:px-8 sm:pb-6 sm:pt-6">
                                 <div className="flex items-start justify-between gap-4">
@@ -74,7 +74,7 @@ export default function AppModal() {
                                         type="button"
                                         onClick={closeModal}
                                         aria-label="Close modal"
-                                        className="flex cursor-pointer h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#e0ded7] text-sm text-[#9c9a94] transition-all hover:bg-[#f3f2ee] hover:text-[#1a1917]"
+                                        className="flex cursor-pointer h-8 w-8 shrink-0 items-center justify-center rounded-full border border-[#e0ded7] text-sm text-[#9c9a94] transition-all hover:bg-[#f3f2ee] hover:text-[#1a1917]"
                                     >
                                         ✕
                                     </button>

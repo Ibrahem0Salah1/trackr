@@ -67,7 +67,6 @@ export default function ApplicationForm({ onSuccess, onCancel }: Props) {
 
     return (
         <form onSubmit={handleSubmit} className="flex flex-col gap-5">
-
             <div className="space-y-4">
                 {/* Company */}
                 <div className="space-y-2">
