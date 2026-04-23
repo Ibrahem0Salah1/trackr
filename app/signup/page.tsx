@@ -97,10 +97,7 @@ export default function SignupPage() {
                 <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#9c9a94]">
                     Get started
                 </p>
-                <h2 className="mt-3 font-serif text-4xl tracking-tight text-[#1a1917]">
-                    Create your workspace
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#5c5a55]">
+                <p className="mt-3 text-sm leading-relaxed text-[#494846]">
                     Set up your account once, then manage the whole application pipeline from one table.
                 </p>
             </div>

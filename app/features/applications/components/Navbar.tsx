@@ -45,13 +45,6 @@ export default function Navbar({ userData }: { userData: UserData | null }) {
 
                 {/* Right side */}
                 <div className="flex items-center gap-3">
-                    <Link
-                        href="/"
-                        className="rounded-full border border-[#e0ded7] px-4 py-2 text-xs font-mono uppercase tracking-[0.2em] text-[#5c5a55] transition-colors hover:bg-white"
-                    >
-                        Home
-                    </Link>
-
                     {/* User dropdown */}
                     <div className="relative cursor-pointer" ref={dropdownRef}>
 

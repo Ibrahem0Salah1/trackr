@@ -33,17 +33,6 @@ export default function HomeNavbar({ userData }: { userData: UserData | null }) 
             <Link href="/" className="font-serif text-2xl tracking-tight text-[#1a1917]">
                 Track<span className="text-violet-600 ">r</span>
             </Link>
-
-            {/* Anchor links — visible on md+ */}
-            <div className="hidden md:flex justify-between items-center gap-8 ">
-                <a href="#features" className="text-sm text-[#5c5a55] hover:text-[#1a1917] transition-colors">
-                    Features
-                </a>
-                <a href="#how" className="text-sm text-[#5c5a55] hover:text-[#1a1917] transition-colors">
-                    How it works
-                </a>
-            </div>
-
             {/* Right side — changes based on auth */}
             <div className="flex items-center gap-2.5 ">
                 {userData ? (

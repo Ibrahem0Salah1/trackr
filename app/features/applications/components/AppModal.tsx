@@ -35,8 +35,7 @@ export default function AppModal() {
         <>
             <button
                 onClick={() => setIsOpen(true)}
-                className="inline-flex w-full items-center justify-center gap-2 rounded-xl bg-[#1a1917] px-5 py-3 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[#2d2c29] hover:shadow-xl sm:w-auto"
-            >
+                className="inline-flex w-full items-center justify-center gap-2 cursor-pointer rounded-xl bg-[#1a1917] px-5 py-3 text-sm font-medium text-white transition-all hover:-translate-y-0.5 hover:bg-[#2d2c29] hover:shadow-xl sm:w-auto">
                 <svg className="w-4 h-4 " viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round">
                     <path d="M12 5v14M5 12h14" />
                 </svg>
@@ -45,17 +44,17 @@ export default function AppModal() {
 
             {isOpen && (
                 <div
-                    className="fixed inset-0 z-50 bg-[#1a1917]/40 backdrop-blur-sm"
+                    className="fixed inset-0 z-50 rounded bg-[#1a1917]/40 backdrop-blur-sm"
                     onClick={closeModal}
                 >
-                    <div className="flex min-h-[100dvh] items-end justify-center sm:items-center sm:px-4 sm:py-6">
+                    <div className="flex items-end justify-center sm:items-center sm:px-4 sm:py-6">
                         <div
                             role="dialog"
                             aria-modal="true"
                             aria-labelledby={titleId}
                             aria-describedby={descriptionId}
                             onClick={event => event.stopPropagation()}
-                            className="flex h-[100dvh] w-full max-w-2xl flex-col overflow-hidden border border-[#e0ded7] bg-white shadow-2xl shadow-black/10 sm:h-auto sm:max-h-[calc(100dvh-3rem)]"
+                            className="flex w-full max-w-2xl flex-col overflow-hidden border rounded-xl border-[#e0ded7] bg-white shadow-2xl shadow-black/10 sm:h-auto sm:max-h-[calc(100dvh-3rem)]"
                         >
                             <div className="shrink-0 border-b border-[#ece9e1] bg-white px-4 pb-4 pt-4 sm:px-8 sm:pb-6 sm:pt-6">
                                 <div className="flex items-start justify-between gap-4">
@@ -65,7 +64,7 @@ export default function AppModal() {
                                         </p>
                                         <h2
                                             id={titleId}
-                                            className="font-serif text-2xl tracking-tight text-[#1a1917] sm:text-3xl"
+                                            className=" text-xl tracking-tight text-[#1a1917] sm:text-3xl"
                                         >
                                             keep your pipeline up to date
                                         </h2>
@@ -75,7 +74,7 @@ export default function AppModal() {
                                         type="button"
                                         onClick={closeModal}
                                         aria-label="Close modal"
-                                        className="flex h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#e0ded7] text-sm text-[#9c9a94] transition-all hover:bg-[#f3f2ee] hover:text-[#1a1917]"
+                                        className="flex cursor-pointer h-11 w-11 shrink-0 items-center justify-center rounded-full border border-[#e0ded7] text-sm text-[#9c9a94] transition-all hover:bg-[#f3f2ee] hover:text-[#1a1917]"
                                     >
                                         ✕
                                     </button>

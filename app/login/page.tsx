@@ -52,20 +52,7 @@ export default function LoginPage() {
             subtitle="Open your Trackr workspace, review every active role, and keep interviews, offers, and follow-ups organized."
             footerText="Don't have an account?"
             footerHref="/signup"
-            footerLinkLabel="Create one"
-        >
-            <div>
-                <p className="text-xs font-mono uppercase tracking-[0.2em] text-[#9c9a94]">
-                    Welcome back
-                </p>
-                <h2 className="mt-3 font-serif text-4xl tracking-tight text-[#1a1917]">
-                    Sign in to Trackr
-                </h2>
-                <p className="mt-3 text-sm leading-relaxed text-[#5c5a55]">
-                    Your dashboard is waiting with the latest state of your job search.
-                </p>
-            </div>
-
+            footerLinkLabel="Create one">
             <div className="mt-8">
                 <form onSubmit={handleSubmit} className="space-y-5">
                     {error && (
